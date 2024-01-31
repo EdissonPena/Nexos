@@ -45,17 +45,31 @@ steps:
 # - download: current
 #   artifact: drop
 
+- task: Docker@2
+  displayName: 'Login registry'
+  inputs:
+    command: login
+    containerRegistry: 'ACR'
 
 - task: Docker@2
   displayName: 'Build and push the image to container registry'
   inputs:
     command: buildAndPush
-    buildContext: $(Build.Repository.LocalPath)
-    repository: 'trainingaws.azurecr.io/nexos'
+    repository: 'nexos'
     dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
-    containerRegistry: 'ACR'
     tags: |
       $(tag)
+
+# - task: Docker@2
+#   displayName: 'Build and push the image to container registry'
+#   inputs:
+#     command: buildAndPush
+#     buildContext: $(Build.Repository.LocalPath)
+#     repository: 'trainingaws.azurecr.io/nexos'
+#     dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
+#     containerRegistry: 'ACR'
+#     tags: |
+#       $(tag)
   
 # - task: AzureWebApp@1
 #   displayName: 'Azure App Service Deploy: website'
