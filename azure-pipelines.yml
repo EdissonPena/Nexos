@@ -56,12 +56,12 @@ steps:
 #     tags: |
 #       $(tag)
   
-# - task: AzureWebApp@1
-#   displayName: 'Azure App Service Deploy: website'
-#   inputs:
-#     azureSubscription: 'training'
-#     appName: 'trainingaws'
-#     package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+- task: AzureWebApp@1
+  displayName: 'Azure App Service Deploy: website'
+  inputs:
+    azureSubscription: 'Azure'
+    appName: 'nexos'
+    package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
 
 # - task: AzureWebAppContainer@1
 #   displayName: 'Deploy the container'
