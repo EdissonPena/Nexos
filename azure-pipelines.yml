@@ -70,4 +70,4 @@ steps:
   inputs:
     azureSubscription: 'NexosApp'
     appName: 'nexosapp'
-    imageName: $(registryName)/$(webRepository):latest)
+    imageName: 'nexos.azurecr.io/test:latest'
