@@ -91,6 +91,6 @@ steps:
 - task: AzureWebAppContainer@1
   displayName: 'Deploy the container'
   inputs:
-    azureSubscription: 'NexosApp'
+    azureSubscription: 'NexosTest'
     appName: 'nexostest'
     imageName: 'edissonpena/nexos:latest'
