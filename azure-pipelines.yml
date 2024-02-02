@@ -13,8 +13,8 @@ variables:
   # tag: '$(Build.BuildId)'
 
   dockerRegistryServiceConnection: 'DockerHub'
-  imageRepository: 'test'
-  # containerRegistry: 'nexos.azurecr.io'
+  imageRepository: 'nexos'
+  # containerRegistry: 'edissonpena/nexos
   dockerfilePath: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
   tag: '$(Build.BuildId)'
 
