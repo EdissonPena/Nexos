@@ -67,6 +67,6 @@ steps:
 - task: AzureWebAppContainer@1
   displayName: 'Deploy the container'
   inputs:
-    azureSubscription: 'Azure'
+    azureSubscription: 'NexosGroup'
     appName: 'nexostest'
     imageName: $(registryName)/$(webRepository):$(build.buildId)
