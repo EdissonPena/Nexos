@@ -6,10 +6,6 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  # registryName: 'trainingaws'
-  # webRepository: 'web'
-  # tag: '$(Build.BuildId)'
-
   dockerRegistryServiceConnection: 'NexosRegistry'
   imageRepository: 'test'
   containerRegistry: 'nexos.azurecr.io'
@@ -60,32 +56,6 @@ steps:
     containerRegistry: $(dockerRegistryServiceConnection)
     tags: |
       $(tag)
-
-# - task: Docker@2
-#   displayName: 'Login registry'
-#   inputs:
-#     command: login
-#     containerRegistry: 'ACR'
-
-# - task: Docker@2
-#   displayName: 'Build and push the image to container registry'
-#   inputs:
-#     command: buildAndPush
-#     repository: 'nexos'
-#     dockerfile: ''
-#     tags: |
-#       $(tag)
-
-# - task: Docker@2
-#   displayName: 'Build and push the image to container registry'
-#   inputs:
-#     command: buildAndPush
-#     buildContext: $(Build.Repository.LocalPath)
-#     repository: 'trainingaws.azurecr.io/nexos'
-#     dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
-#     containerRegistry: 'ACR'
-#     tags: |
-#       $(tag)
   
 # - task: AzureWebApp@1
 #   displayName: 'Azure App Service Deploy: website'
@@ -94,9 +64,9 @@ steps:
 #     appName: 'nexos'
 #     package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
 
-# - task: AzureWebAppContainer@1
-#   displayName: 'Deploy the container'
-#   inputs:
-#     azureSubscription: 'training'
-#     appName: 'trainingaws'
-#     imageName: $(registryName)/$(webRepository):$(build.buildId)
+- task: AzureWebAppContainer@1
+  displayName: 'Deploy the container'
+  inputs:
+    azureSubscription: 'Azure'
+    appName: 'nexostest'
+    imageName: $(registryName)/$(webRepository):$(build.buildId)
