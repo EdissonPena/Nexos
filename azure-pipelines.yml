@@ -112,5 +112,3 @@ steps:
     azureSubscription: 'NexosTest'
     appName: 'nexostest'
     imageName: 'edissonpena/nexos:latest'
-
-    8529dd1e105908b71de87f9641b1100cf3368be9
