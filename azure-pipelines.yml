@@ -18,6 +18,10 @@ variables:
   tag: '$(Build.BuildId)'
 
 steps:
+
+- checkout: self
+  fetchDepth: 0
+
 - task: UseDotNet@2
   displayName: 'Use .NET SDK 6.x'
   inputs:
@@ -29,6 +33,13 @@ steps:
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
+
+- task: SonarCloudPrepare@1
+  inputs:
+    sonarCloud: 'SonarCloud'
+    organization: 'edissonpena'
+    scannerMode: 'MSBuild'
+    projectKey: 'EdissonPena_Nexos'
 
 - task: DotNetCoreCLI@2
   displayName: 'Build the project - Release'
@@ -44,6 +55,16 @@ steps:
     arguments: '--no-build --configuration $(buildConfiguration)'
     publishTestResults: true
     projects: '**/*.Tests.csproj'
+
+# - task: SonarQubePrepare@5
+#   inputs:
+#     SonarQube: # string. Required. SonarQube Server Endpoint. 
+#     scannerMode: 'MSBuild'
+#     #configMode: 'file' # 'file' | 'manual'. Required when scannerMode = CLI. Mode. Default: file.
+#     #configFile: 'sonar-project.properties' # string. Optional. Use when scannerMode = CLI && configMode = file. Settings File. Default: sonar-project.properties.
+#     #cliProjectKey: # string. Required when scannerMode = CLI && configMode = manual. Project Key. 
+#     projectKey: 'nexos_test'
+
 
 # - task: DotNetCoreCLI@2
 #   displayName: 'Publish the project - Release'
@@ -91,3 +112,5 @@ steps:
     azureSubscription: 'NexosTest'
     appName: 'nexostest'
     imageName: 'edissonpena/nexos:latest'
+
+    8529dd1e105908b71de87f9641b1100cf3368be9
