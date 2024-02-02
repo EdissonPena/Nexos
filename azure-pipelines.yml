@@ -14,7 +14,6 @@ variables:
 
   dockerRegistryServiceConnection: 'DockerHub'
   imageRepository: 'edissonpena/nexos'
-  # containerRegistry: 'edissonpena/nexos
   dockerfilePath: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
   tag: '$(Build.BuildId)'
 
@@ -88,3 +87,10 @@ steps:
 #     azureSubscription: 'NexosApp'
 #     appName: 'nexosapp'
 #     imageName: 'nexos.azurecr.io/test:latest'
+
+- task: AzureWebAppContainer@1
+  displayName: 'Deploy the container'
+  inputs:
+    azureSubscription: 'NexosApp'
+    appName: 'nexostest'
+    imageName: 'edissonpena/nexos:latest'
