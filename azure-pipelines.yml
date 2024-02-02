@@ -8,6 +8,12 @@ variables:
   buildConfiguration: 'Release'
   # registryName: 'trainingaws'
   # webRepository: 'web'
+  # tag: '$(Build.BuildId)'
+
+  dockerRegistryServiceConnection: 'ACR' ## Review Service Connections
+  imageRepository: 'nexos/test'
+  containerRegistry: 'trainingaws.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
   tag: '$(Build.BuildId)'
 
 steps:
@@ -46,19 +52,29 @@ steps:
 #   artifact: drop
 
 - task: Docker@2
-  displayName: 'Login registry'
-  inputs:
-    command: login
-    containerRegistry: 'ACR'
-
-- task: Docker@2
-  displayName: 'Build and push the image to container registry'
+  displayName: Build and push an image to container registry
   inputs:
     command: buildAndPush
-    repository: 'nexos'
-    dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
+    repository: $(imageRepository)
+    dockerfile: $(dockerfilePath)
+    containerRegistry: $(dockerRegistryServiceConnection)
     tags: |
       $(tag)
+
+# - task: Docker@2
+#   displayName: 'Login registry'
+#   inputs:
+#     command: login
+#     containerRegistry: 'ACR'
+
+# - task: Docker@2
+#   displayName: 'Build and push the image to container registry'
+#   inputs:
+#     command: buildAndPush
+#     repository: 'nexos'
+#     dockerfile: ''
+#     tags: |
+#       $(tag)
 
 # - task: Docker@2
 #   displayName: 'Build and push the image to container registry'
