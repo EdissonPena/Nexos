@@ -50,6 +50,11 @@ steps:
 
 - task: SonarCloudAnalyze@1
 
+- task: SonarCloudPublish@1
+  displayName: 'Code Analysis - Publish QG'
+  inputs:
+    pollingTimeoutSec: '300'
+
 - task: DotNetCoreCLI@2
   displayName: 'Run unit tests - $(buildConfiguration)'
   inputs:
