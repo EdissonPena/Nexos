@@ -1,0 +1,5 @@
+/Users/edisson/Documents/Nexos/Tailspin.SpaceGame.Web.Tests/obj/Debug/net6.0/Tailspin.SpaceGame.Web.Tests.csproj.AssemblyReference.cache
+/Users/edisson/Documents/Nexos/Tailspin.SpaceGame.Web.Tests/obj/Debug/net6.0/Tailspin.SpaceGame.Web.Tests.GeneratedMSBuildEditorConfig.editorconfig
+/Users/edisson/Documents/Nexos/Tailspin.SpaceGame.Web.Tests/obj/Debug/net6.0/Tailspin.SpaceGame.Web.Tests.AssemblyInfoInputs.cache
+/Users/edisson/Documents/Nexos/Tailspin.SpaceGame.Web.Tests/obj/Debug/net6.0/Tailspin.SpaceGame.Web.Tests.AssemblyInfo.cs
+/Users/edisson/Documents/Nexos/Tailspin.SpaceGame.Web.Tests/obj/Debug/net6.0/Tailspin.SpaceGame.Web.Tests.csproj.CoreCompileInputs.cache

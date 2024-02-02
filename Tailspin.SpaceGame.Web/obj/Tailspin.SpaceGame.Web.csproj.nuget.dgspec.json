@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/edisson/Documents/training/Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj": {}
+    "/Users/edisson/Documents/Nexos/Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj": {}
   },
   "projects": {
-    "/Users/edisson/Documents/training/Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj": {
+    "/Users/edisson/Documents/Nexos/Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/edisson/Documents/training/Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj",
+        "projectUniqueName": "/Users/edisson/Documents/Nexos/Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj",
         "projectName": "Tailspin.SpaceGame.Web",
-        "projectPath": "/Users/edisson/Documents/training/Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj",
+        "projectPath": "/Users/edisson/Documents/Nexos/Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj",
         "packagesPath": "/Users/edisson/.nuget/packages/",
-        "outputPath": "/Users/edisson/Documents/training/Tailspin.SpaceGame.Web/obj/",
+        "outputPath": "/Users/edisson/Documents/Nexos/Tailspin.SpaceGame.Web/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
