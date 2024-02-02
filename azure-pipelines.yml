@@ -69,5 +69,5 @@ steps:
   displayName: 'Deploy the container'
   inputs:
     azureSubscription: 'NexosGroup'
-    appName: 'nexostest'
-    imageName: $(registryName)/$(webRepository):$(build.buildId)
+    appName: 'nexosapp'
+    imageName: $(registryName)/$(webRepository):latest)
