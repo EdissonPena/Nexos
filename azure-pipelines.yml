@@ -10,9 +10,9 @@ variables:
   # webRepository: 'web'
   # tag: '$(Build.BuildId)'
 
-  dockerRegistryServiceConnection: 'ACR' ## Review Service Connections
-  imageRepository: 'nexos/test'
-  containerRegistry: 'trainingaws.azurecr.io'
+  dockerRegistryServiceConnection: 'NexosRegistry'
+  imageRepository: 'test'
+  containerRegistry: 'nexos.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
   tag: '$(Build.BuildId)'
 
