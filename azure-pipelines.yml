@@ -76,7 +76,7 @@ steps:
     imageName: 'edissonpena/nexos:latest'
 
 - script: |
-    wget -c https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz
+    wget -c https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
     tar -xf apache-jmeter-5.6.3.tgz
   displayName: 'Install JMeter'
 
@@ -88,7 +88,7 @@ steps:
     JMETER_RESULTS=results/results.jtl
     JUNIT_RESULTS=output.xml
     python3 jtl_junit_converter.py $JMETER_RESULTS $JUNIT_RESULTS
-  displayName: 'Convert JMeter Results to JUnit Format'
+  displayName: 'Transform JMeter Results to JUnit Format'
 
 - task: PublishTestResults@2
   inputs:
