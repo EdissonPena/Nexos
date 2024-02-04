@@ -142,6 +142,13 @@ steps:
     failTaskOnFailedTests: true
   displayName: 'RESULTS: Publish Load Testing Results'
 
+# - task: PublishTestResults@2
+#   displayName: 'Publish Load Test Results'
+#   inputs:
+#     testResultsFormat: 'JUnit'
+#     testResultsFiles: '$(Build.SourcesDirectory)/TestFiles/LoadReports/Junit.xml'
+#     failTaskOnFailedTests: false
+
 - publish: $(System.DefaultWorkingDirectory)/results
   artifact: jmeter-results
   condition: succeededOrFailed()
@@ -152,3 +159,14 @@ steps:
   inputs:
     targetPath: report
     artifact: jmeter-report
+
+#   - task: PublishBuildArtifacts@1
+#     displayName: "Publish load test Artifacts"
+#     inputs:
+#      pathToPublish: '$(Build.SourcesDirectory)/TestFiles/LoadReports/'
+#     condition: always()
+
+- task: publishhtmlreport@1
+  inputs:
+    htmlType: 'Jmeter'
+    JmeterReportsPath: '$(Build.SourcesDirectory)/results'
