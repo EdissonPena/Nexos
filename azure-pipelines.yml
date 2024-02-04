@@ -133,10 +133,10 @@ steps:
 
 
 - task: PublishTestResults@2
-  displayName: 'Publish Test Results'
+  displayName: 'Publish OWASP Test Results'
   inputs:
     testResultsFormat: 'NUnit'
-    testResultsFiles: 'owaspzap/test-results.xml'
+    testResultsFiles: 'test-results.xml'
 
 - task: AzureWebAppContainer@1
   displayName: 'Deploy the container'
