@@ -68,7 +68,7 @@ steps:
       latest
       $(tag)
 
-- bash: docker run -d -p 80:80 nexos:latest
+- bash: docker run -d -p 80:80 edissonpena/nexos:latest
   displayName: 'App Container'
 
 - task: owaspzap@1
