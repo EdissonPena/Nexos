@@ -169,4 +169,4 @@ steps:
 - task: publishhtmlreport@1
   inputs:
     htmlType: 'Jmeter'
-    JmeterReportsPath: '$(Build.SourcesDirectory)/results'
+    JmeterReportsPath: '$(Build.SourcesDirectory)/LoadReports'
