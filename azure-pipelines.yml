@@ -121,7 +121,7 @@ steps:
     imageName: 'edissonpena/nexos:latest'
 
 - script: |
-    wget -c https://dicdn.apache.org//jmeter/binaries/apache-jmeter-5.4.1.tgz
+    wget -c https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.4.1.tgz
     tar -xf apache-jmeter-5.4.1.tgz
   displayName: 'Install the dependency packages'
 
