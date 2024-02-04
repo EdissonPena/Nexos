@@ -6,12 +6,6 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  # dockerRegistryServiceConnection: 'NexosRegistry'
-  # imageRepository: 'test'
-  # containerRegistry: 'nexos.azurecr.io'
-  # dockerfilePath: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
-  # tag: '$(Build.BuildId)'
-
   dockerRegistryServiceConnection: 'DockerHub'
   imageRepository: 'edissonpena/nexos'
   dockerfilePath: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
@@ -63,31 +57,6 @@ steps:
     publishTestResults: true
     projects: '**/*.Tests.csproj'
 
-# - task: SonarQubePrepare@5
-#   inputs:
-#     SonarQube: # string. Required. SonarQube Server Endpoint. 
-#     scannerMode: 'MSBuild'
-#     #configMode: 'file' # 'file' | 'manual'. Required when scannerMode = CLI. Mode. Default: file.
-#     #configFile: 'sonar-project.properties' # string. Optional. Use when scannerMode = CLI && configMode = file. Settings File. Default: sonar-project.properties.
-#     #cliProjectKey: # string. Required when scannerMode = CLI && configMode = manual. Project Key. 
-#     projectKey: 'nexos_test'
-
-
-# - task: DotNetCoreCLI@2
-#   displayName: 'Publish the project - Release'
-#   inputs:
-#     command: 'publish'
-#     projects: '**/*.csproj'
-#     publishWebProjects: false
-#     arguments: '--no-build --configuration Release --output $(Build.ArtifactStagingDirectory)/Release'
-#     zipAfterPublish: true
-
-# - publish: '$(Build.ArtifactStagingDirectory)'
-#   artifact: drop
-
-# - download: current
-#   artifact: drop
-
 - task: Docker@2
   displayName: Build and push an image to container registry
   inputs:
@@ -99,20 +68,6 @@ steps:
       latest
       $(tag)
   
-# - task: AzureWebApp@1
-#   displayName: 'Azure App Service Deploy: website'
-#   inputs:
-#     azureSubscription: 'Azure'
-#     appName: 'nexos'
-#     package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
-
-# - task: AzureWebAppContainer@1
-#   displayName: 'Deploy the container'
-#   inputs:
-#     azureSubscription: 'NexosApp'
-#     appName: 'nexosapp'
-#     imageName: 'nexos.azurecr.io/test:latest'
-
 - task: AzureWebAppContainer@1
   displayName: 'Deploy the container'
   inputs:
@@ -123,50 +78,38 @@ steps:
 - script: |
     wget -c https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz
     tar -xf apache-jmeter-5.6.3.tgz
-  displayName: 'Install the dependency packages'
+  displayName: 'Install JMeter'
 
 - script: |
-        apache-jmeter-5.6.3/bin/./jmeter -Jjmeter.reportgenerator.overall_granularity=1000 -n -t test.jmx -l results/results.jtl -j results/output.log -e -o report
+        apache-jmeter-5.6.3/bin/./jmeter -Jjmeter.reportgenerator.overall_granularity=1000 -n -t LoadTest.jmx -l results/results.jtl -j results/output.log -e -o report
   displayName: 'Run JMeter'
 
 - script: |
     JMETER_RESULTS=results/results.jtl
     JUNIT_RESULTS=output.xml
     python3 jtl_junit_converter.py $JMETER_RESULTS $JUNIT_RESULTS
-  displayName: 'RESULTS: Convert JMeter Results to JUnit Format'
+  displayName: 'Convert JMeter Results to JUnit Format'
 
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
     testResultsFiles: 'output.xml'
     failTaskOnFailedTests: true
-  displayName: 'RESULTS: Publish Load Testing Results'
-
-# - task: PublishTestResults@2
-#   displayName: 'Publish Load Test Results'
-#   inputs:
-#     testResultsFormat: 'JUnit'
-#     testResultsFiles: '$(Build.SourcesDirectory)/TestFiles/LoadReports/Junit.xml'
-#     failTaskOnFailedTests: false
+  displayName: 'Publish Load Testing Results'
 
 - publish: $(System.DefaultWorkingDirectory)/results
   artifact: jmeter-results
   condition: succeededOrFailed()
-  displayName: 'RESULTS: Publish Load Test Artifacts'
+  displayName: 'Publish Load Test Artifacts'
 
 - task: PublishPipelineArtifact@1
-  displayName: 'Publish JMeter HTML Report'
+  displayName: 'Publish Artifact HTML Report'
   inputs:
     targetPath: report
     artifact: jmeter-report
 
-#   - task: PublishBuildArtifacts@1
-#     displayName: "Publish load test Artifacts"
-#     inputs:
-#      pathToPublish: '$(Build.SourcesDirectory)/TestFiles/LoadReports/'
-#     condition: always()
-
 - task: publishhtmlreport@1
+  displayName: 'Publish Pipeline HTML Report'
   inputs:
     htmlType: 'Jmeter'
     JmeterReportsPath: '$(Build.SourcesDirectory)/report'
