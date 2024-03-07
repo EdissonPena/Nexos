@@ -15,11 +15,7 @@ jobs:
   push:
       runs-on: ubuntu-latest
       steps:
-        - run: gh repo set-default --view
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-        - run: gh workflow run test.yml
+        - run: gh workflow view test.yml
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # This workflow contains a single job called "build"
