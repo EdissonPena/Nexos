@@ -12,6 +12,12 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  push:
+      runs-on: ubuntu-latest
+      steps:
+        - run: gh workflow run test.yml
+          env:
+            GITHUB_TOKEN: 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
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
