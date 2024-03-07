@@ -11,14 +11,7 @@ on:
     # inputs are optional, they may be used to convey contextual data
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  push:
-    runs-on: ubuntu-latest
-    steps:
-      - run: gh workflow run triage.yml
-        env:
-          GITHUB_TOKEN: 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
-          
+jobs:      
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
