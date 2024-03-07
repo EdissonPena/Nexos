@@ -17,7 +17,7 @@ jobs:
       steps:
         - run: gh workflow run test.yml
           env:
-            GITHUB_TOKEN: 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
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
