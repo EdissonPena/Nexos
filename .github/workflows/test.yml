@@ -15,7 +15,7 @@ jobs:
   push:
       runs-on: ubuntu-latest
       steps:
-        - run: gh repo set-default EdissonPena/Nexos
+        - run: gh repo set-default --view
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
