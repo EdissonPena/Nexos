@@ -17,7 +17,7 @@ jobs:
     steps:
       - run: gh workflow run triage.yml
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: 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
           
   # This workflow contains a single job called "build"
   build:
