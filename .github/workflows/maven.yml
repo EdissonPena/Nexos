@@ -31,7 +31,7 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Change target directory
-      run: cd target
+      run: cd ./target
 
     - name: Show directory
       run: ls
