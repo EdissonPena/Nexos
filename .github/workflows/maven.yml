@@ -31,10 +31,7 @@ jobs:
       run: mvn clean package -DskipTests
 
     - name: Change target directory
-      run: cd target
-
-    - name: Change target directory
-      run: cd target
+      run: cd src
       
     - name: Show directory
       run: ls
