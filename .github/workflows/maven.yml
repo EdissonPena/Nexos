@@ -38,6 +38,9 @@ jobs:
 
     - name: OC Build Image
       run: oc start-build poc-github-actions --from-dir=./target/ --wait=true -n edpena-dev
+
+    - name: OC Tag Image
+      run: oc tag test:latest test:gha1 -n edpena-dev
       
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
