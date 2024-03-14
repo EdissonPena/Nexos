@@ -28,13 +28,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
-
-    - name: OC VLogin
-      run: oc login --token=sha256~5oLvC3X75iYd-SQro9g6qG3NxNJsRPVwxgb2qSg_fls --server=https://api.sandbox-m4.g2pi.p1.openshiftapps.com:6443
-
-    - name: OC Build Image
-      run: oc start-build poc-github-actions --from-dir=target/ --wait=true -n edpena-dev
+      run: mvn clean package -DskipTests
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
